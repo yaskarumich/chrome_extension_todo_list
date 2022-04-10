@@ -1,0 +1,149 @@
+
+/* @media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+} */
+
+.left-side {
+  width: 35%;
+  padding: 20px 0px 20px 40px;
+  position: absolute;
+}
+.container {
+  background: linear-gradient(to right, white 35%,#FECCFF 0);
+  height: 1000px;
+}
+.right-side {
+  margin-left: 35%;
+  padding: 20px;
+  position: absolute;
+}
+
+.line:after {
+  content: " ";
+  position: absolute;
+  float: right;
+  width: 100%;
+  height: 3px;
+  
+  transform: scalex(0);
+  transition: transform 0.3s ease;
+  
+  background: #1abc9c;
+}
+
+
+input {
+  background: transparent;
+  border: 2px solid transparent;
+  outline: transparent;
+  width: 40%;
+  font-size: 1.5em;
+  transition: padding 0.3s 0.2s ease;
+}
+input:focus, input:hover, input:active {
+  padding-bottom: 5px;
+  border-color: #1abc9c;
+  border-bottom: 2px solid teal;
+}
+/* Style the list items */
+ul li {
+  position: relative;
+  padding: 12px 8px 12px 40px;
+  background: #eee;
+  font-size: 18px;
+  transition: 0.2s;
+  width: 75%;
+  display: inline-block;
+
+  /* make the list items unselectable */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.field .line {
+  margin-top: 200px;
+  height: 25px;
+  bottom: -8px;
+  margin-right: 10px;
+}
+.field .line:after {
+  content: " ";
+  height: 25px;
+  transform: scalex(0);
+}
+.line {
+  border: #1abc9c;
+}
+
+.submit-feedback {
+  padding: 10px 30px;
+  font-size: 24px;
+  cursor: pointer;
+  border-radius: 7px;
+  border-bottom-left-radius: 0;
+  background-color: var(--feedback-secondary-color);
+  color: var(--feedback-primary-color);
+  transition: all 0.3s;
+}
+.submit-feedback:hover {
+  color: var(--feedback-primary-color);
+  background-color: var(--background-color);
+  background-image: url("data:image/svg+xml,%3Csvg width='52' height='26' viewBox='0 0 52 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffacac' fill-opacity='0.4'%3E%3Cpath d='M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  animation: animatedBackground 5s linear infinite alternate;
+}
+
+@keyframes animatedBackground {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 100% 0;
+  }
+}
+/* Style the close button */
+.close {
+  position: relative;
+  right: 0;
+  padding: 12px 16px 12px 16px;
+}
+
+.close:hover {
+  background-color: #f44336;
+  color: white;
+}
+.todoli {
+  background-color: none;
+  background: none;
+  padding-left: 20px;
+  padding-top: 40px;
+}
+@keyframes bounce {
+	0%, 100%, 20%, 50%, 80% {
+		-webkit-transform: translateY(0);
+		-ms-transform:     translateY(0);
+		transform:         translateY(0)
+	}
+	40% {
+		-webkit-transform: translateY(-30px);
+		-ms-transform:     translateY(-30px);
+		transform:         translateY(-30px)
+	}
+	60% {
+		-webkit-transform: translateY(-15px);
+		-ms-transform:     translateY(-15px);
+		transform:         translateY(-15px)
+	}
+}
+li:hover {
+    /* animation-name: bounce;
+    -moz-animation-name: bounce; */
+}
