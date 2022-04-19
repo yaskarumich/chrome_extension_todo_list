@@ -5,6 +5,7 @@
   }
 } */
 
+/* OVERALL DIVISIONS OF SCREEN */
 .left-side {
   width: 35%;
   padding: 20px 0px 20px 40px;
@@ -20,6 +21,61 @@
   position: absolute;
 }
 
+/* SPECIFICALLY FOR LIST ITEM + DELETE BUTTON */
+/*INPUT BOX */
+
+.taskStyle{
+  border: 2px solid transparent;
+  font-size: 1.5em;
+  transition: padding 0.3s 0.2s ease;
+  width: 60%;
+  outline: transparent;
+  margin: 5px;
+  padding: 20px;
+}
+
+.taskStyle:focus {
+  background-color: paleturquoise;
+  height: 30%;
+  padding: 15px;
+  border-radius: 50px;
+
+}
+.individTask {
+  margin-bottom: 11px;
+}
+
+/* SPECIFICALLY FOR ADD TASK INPUT BOX + ADD TASK BUTTON */
+/* INPUT BOX */
+.field .line {
+  margin-top: 200px;
+  height: 25px;
+  bottom: -8px;
+  margin-right: 40px;
+}
+.field .line:after {
+  content: " ";
+  height: 25px;
+  transform: scalex(0);
+}
+.line {
+  /* border: #1abc9c; */
+  margin-right: 10px;
+} 
+
+.addTask{
+  background: transparent;
+  border: 2px solid transparent;
+  outline: transparent;
+  width: 40%;
+  font-size: 1.5em;
+  transition: padding 0.3s 0.2s ease;
+}
+.addTask:focus, .addTask:hover, .addTask:active {
+  padding-bottom: 5px;
+  border-bottom: 2px solid teal;
+  outline: transparent;
+}
 .line:after {
   content: " ";
   position: absolute;
@@ -30,24 +86,26 @@
   transform: scalex(0);
   transition: transform 0.3s ease;
   
-  background: #1abc9c;
+}
+/* ADD TASK BUTTON */
+.submit-feedback {
+  padding: 10px 30px;
+  font-size: 24px;
+  cursor: pointer;
+  border-radius: 7px;
+  border-bottom-left-radius: 0;
+  background-color: var(--feedback-secondary-color);
+  color: var(--feedback-primary-color);
+  transition: all 0.3s;
+}
+.submit-feedback:hover {
+  color: var(--feedback-primary-color);
+  background-color: var(--background-color);
+  background-image: url("data:image/svg+xml,%3Csvg width='52' height='26' viewBox='0 0 52 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffacac' fill-opacity='0.4'%3E%3Cpath d='M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  animation: animatedBackground 5s linear infinite alternate;
 }
 
-
-input {
-  background: transparent;
-  border: 2px solid transparent;
-  outline: transparent;
-  width: 40%;
-  font-size: 1.5em;
-  transition: padding 0.3s 0.2s ease;
-}
-input:focus, input:hover, input:active {
-  padding-bottom: 5px;
-  border-color: #1abc9c;
-  border-bottom: 2px solid teal;
-}
-/* Style the list items */
+/* TODO LIST */
 ul li {
   position: relative;
   padding: 12px 8px 12px 40px;
@@ -69,38 +127,6 @@ ul {
   list-style: none;
 }
 
-.field .line {
-  margin-top: 200px;
-  height: 25px;
-  bottom: -8px;
-  margin-right: 10px;
-}
-.field .line:after {
-  content: " ";
-  height: 25px;
-  transform: scalex(0);
-}
-.line {
-  border: #1abc9c;
-}
-
-.submit-feedback {
-  padding: 10px 30px;
-  font-size: 24px;
-  cursor: pointer;
-  border-radius: 7px;
-  border-bottom-left-radius: 0;
-  background-color: var(--feedback-secondary-color);
-  color: var(--feedback-primary-color);
-  transition: all 0.3s;
-}
-.submit-feedback:hover {
-  color: var(--feedback-primary-color);
-  background-color: var(--background-color);
-  background-image: url("data:image/svg+xml,%3Csvg width='52' height='26' viewBox='0 0 52 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffacac' fill-opacity='0.4'%3E%3Cpath d='M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-  animation: animatedBackground 5s linear infinite alternate;
-}
-
 @keyframes animatedBackground {
   from {
     background-position: 0 0;
@@ -109,6 +135,7 @@ ul {
     background-position: 100% 0;
   }
 }
+
 /* Style the close button */
 .close {
   position: relative;

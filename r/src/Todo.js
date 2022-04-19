@@ -6,7 +6,7 @@ import BibleMatt from './Bible/bibleMatt.json';
 import BibleLuke from './Bible/bibleLuke.json';
 import BibleMark from './Bible/bibleMark.json';
 
-import './css/typewriter.css';
+// import './css/typewriter.css';
 import './css/App.css';
 import 'animate.css';
 
@@ -14,8 +14,10 @@ export default function Todo() {
     const [list, setList] = useState([]);
     const [index, setIndex] = useState(0);
     const [val, setVal] = useState("");
-    const [bib, setBib] = useState(<h1></h1>);
+    const [bib, setBib] = useState("");
     const [noTask, setnoTask] = useState(false);
+    const [dragging, setDragging] = useState("");
+    const [draggedOver, setDraggedOver] = useState("");
     
     // useEffect(() => {
     //     chrome.storage.sync.get("list", function(items){
@@ -34,9 +36,6 @@ export default function Todo() {
         chooseBibleVerse();
     }, []) 
 
-    function handleInputChange({target}) {
-        setVal(target.value);
-    }
     function addTask() {
         if (val === "") {
             setnoTask(true);
@@ -54,6 +53,20 @@ export default function Todo() {
         setnoTask(false);
         // chrome.storage.sync.set({"list": new_list});
     }
+
+    function handleListItemClick(e, x) {
+        const found_id = (ident) => ident.id === x;
+        let i = list.findIndex(found_id);
+        let new_list = list.slice();
+        new_list[i] = {'id': i, 'task': e.target.value};
+        setList(new_list);
+        // chrome.storage.sync.set({"list": new_list});
+    }
+
+    function handleInputChange({target}) {
+        setVal(target.value);
+    }
+
     function handleDelete(x) {
         const found_id = (ident) => ident.id === x;
         let i = list.findIndex(found_id);
@@ -63,6 +76,7 @@ export default function Todo() {
         setList(new_list);
         // chrome.storage.sync.set({"list": new_list});
     }
+
     function chooseBibleVerse() {
         // put all json files into one array 
         var arr_books = [BibleJohn, BibleMatt, BibleMark, BibleLuke];
@@ -82,10 +96,42 @@ export default function Todo() {
         ver =  Math.floor(Math.random() * num_verses);
         setBib( <h1 className='animate__animated animate__fadeInRight text-center'>{`${name} ${ch+1}:${ver+1}: ${arr_books[rand]["chapters"][ch].verses[ver].text}`}</h1>);
     }
-    const handleEnter = e => {
-        if (e.keyCode === 13) {
+
+    function handleEnter(e, num) {
+        if (e.keyCode === 13 && num == 1) {
             addTask();
         }
+        else if (e.keyCode == 13 && num == 0) {
+            e.target.blur();
+        }
+    }
+
+    // function setDrag(x) {
+    //     let child = getChildInput(x);
+    //     setDragging(parseInt(child.id));
+    // }
+
+    // function setDragOver(e, x) {
+    //     e.preventDefault();
+    //     let child = getChildInput(x);
+    //     setDraggedOver(parseInt(child.id));
+    // }
+
+    // function compare(x) {
+    //     const found_dragging = (ident) => ident.id === dragging;
+    //     const found_draggedOver = (ident) => ident.id === draggedOver;
+    //     var index1 = list.findIndex(found_draggedOver);
+    //     var index2 = list.findIndex(found_dragging);
+    //     let new_list = list;
+    //     new_list.splice(index1, 1)
+    //     new_list.splice(index2, 0, new_list[index2]["task"])
+    //     setList(new_list);
+    // };
+
+    function getChildInput(x) {
+        let parent = document.getElementById(x);
+        var children = parent.childNodes;
+        return children[1];
     }
 
   return (
@@ -94,30 +140,42 @@ export default function Todo() {
               <h1 className='animate__animated animate__fadeInLeft'>Your Todo List</h1>
             <ul className='text-center'>
             {list.map((item) => (
-                <div className='row'>
+                <div 
+                    draggable={true}
+                    // onDrag={setDrag(`div${item.id}`)}
+                    // onDragOver={e => setDragOver(e, `div${item.id}`)}
+                    // onDrop={compare(`div${item.id}`)}
+                    className='row individTask'
+                    id={`div${item.id}`}
+                >
                     <button className='submit-feedback close' type="submit" onClick={() => handleDelete(item.id)}>x</button>
-                    <li className = 'todoli' key={`task{item.id}`}>{item.task}</li>
+                    <input onKeyDown={e => handleEnter(e, 0)} id = {`${item.id}`} value = {item.task} onChange={e => handleListItemClick(e, item.id)} className = 'taskStyle' key={`task{item.id}`} />
                 </div>
             ))}
             </ul>
             </div>
         <div className='right-side'>
             {bib}
-            <div class="field">
+            {/* <div className="quote-wrapper">
+                <blockquote className="text">
+                    <p>{bib}</p>
+                    <footer>{bibRef}</footer>
+                </blockquote>
+            </div> */}
+            <div className="field">
                 <div className="mainBox">
                     <input 
                         value = {val} 
                         id = "task" 
-                        className = "field line" 
+                        className = "field line addTask" 
                         placeholder = "Type in your task here" 
                         onChange={handleInputChange}
-                        onKeyDown={handleEnter}
+                        onKeyDown={e => handleEnter(e, 1)}
                         autoComplete="off"
                     />
                     <button className='submit-feedback add' type="submit" onClick={addTask}>Add Task!</button>
                     {noTask && <p>You need to type something!</p>}
                 </div>
-                <div class="line"></div>
             </div>
             
         </div>
