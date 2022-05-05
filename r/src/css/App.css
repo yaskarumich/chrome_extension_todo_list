@@ -45,23 +45,6 @@
   margin-bottom: 11px;
 }
 
-/* SPECIFICALLY FOR ADD TASK INPUT BOX + ADD TASK BUTTON */
-/* INPUT BOX */
-.field .line {
-  margin-top: 200px;
-  height: 25px;
-  bottom: -8px;
-  margin-right: 40px;
-}
-.field .line:after {
-  content: " ";
-  height: 25px;
-  transform: scalex(0);
-}
-.line {
-  /* border: #1abc9c; */
-  margin-right: 10px;
-} 
 
 .addTask{
   background: transparent;
@@ -76,17 +59,7 @@
   border-bottom: 2px solid teal;
   outline: transparent;
 }
-.line:after {
-  content: " ";
-  position: absolute;
-  float: right;
-  width: 100%;
-  height: 3px;
-  
-  transform: scalex(0);
-  transition: transform 0.3s ease;
-  
-}
+
 /* ADD TASK BUTTON */
 .submit-feedback {
   padding: 10px 30px;
@@ -97,6 +70,7 @@
   background-color: var(--feedback-secondary-color);
   color: var(--feedback-primary-color);
   transition: all 0.3s;
+  margin-left: 20px;
 }
 .submit-feedback:hover {
   color: var(--feedback-primary-color);

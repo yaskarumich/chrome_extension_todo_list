@@ -16,8 +16,6 @@ export default function Todo() {
     const [val, setVal] = useState("");
     const [bib, setBib] = useState("");
     const [noTask, setnoTask] = useState(false);
-    const [dragging, setDragging] = useState("");
-    const [draggedOver, setDraggedOver] = useState("");
     
     // useEffect(() => {
     //     chrome.storage.sync.get("list", function(items){
@@ -81,7 +79,7 @@ export default function Todo() {
         // put all json files into one array 
         var arr_books = [BibleJohn, BibleMatt, BibleMark, BibleLuke];
         // create variables
-        let rand, name, num_chapters, ch, num_verses, ver, ver_length;
+        let rand, name, num_chapters, ch, num_verses, ver;
         // pick a random num/book 
         rand = (Math.floor(Math.random() * arr_books.length));
         // find book's name
@@ -98,40 +96,12 @@ export default function Todo() {
     }
 
     function handleEnter(e, num) {
-        if (e.keyCode === 13 && num == 1) {
+        if (e.keyCode === 13 && num === 1) {
             addTask();
         }
-        else if (e.keyCode == 13 && num == 0) {
+        else if (e.keyCode === 13 && num === 0) {
             e.target.blur();
         }
-    }
-
-    // function setDrag(x) {
-    //     let child = getChildInput(x);
-    //     setDragging(parseInt(child.id));
-    // }
-
-    // function setDragOver(e, x) {
-    //     e.preventDefault();
-    //     let child = getChildInput(x);
-    //     setDraggedOver(parseInt(child.id));
-    // }
-
-    // function compare(x) {
-    //     const found_dragging = (ident) => ident.id === dragging;
-    //     const found_draggedOver = (ident) => ident.id === draggedOver;
-    //     var index1 = list.findIndex(found_draggedOver);
-    //     var index2 = list.findIndex(found_dragging);
-    //     let new_list = list;
-    //     new_list.splice(index1, 1)
-    //     new_list.splice(index2, 0, new_list[index2]["task"])
-    //     setList(new_list);
-    // };
-
-    function getChildInput(x) {
-        let parent = document.getElementById(x);
-        var children = parent.childNodes;
-        return children[1];
     }
 
   return (
@@ -142,9 +112,6 @@ export default function Todo() {
             {list.map((item) => (
                 <div 
                     draggable={true}
-                    // onDrag={setDrag(`div${item.id}`)}
-                    // onDragOver={e => setDragOver(e, `div${item.id}`)}
-                    // onDrop={compare(`div${item.id}`)}
                     className='row individTask'
                     id={`div${item.id}`}
                 >
@@ -156,28 +123,19 @@ export default function Todo() {
             </div>
         <div className='right-side'>
             {bib}
-            {/* <div className="quote-wrapper">
-                <blockquote className="text">
-                    <p>{bib}</p>
-                    <footer>{bibRef}</footer>
-                </blockquote>
-            </div> */}
-            <div className="field">
-                <div className="mainBox">
-                    <input 
-                        value = {val} 
-                        id = "task" 
-                        className = "field line addTask" 
-                        placeholder = "Type in your task here" 
-                        onChange={handleInputChange}
-                        onKeyDown={e => handleEnter(e, 1)}
-                        autoComplete="off"
-                    />
-                    <button className='submit-feedback add' type="submit" onClick={addTask}>Add Task!</button>
-                    {noTask && <p>You need to type something!</p>}
-                </div>
+            <div>
+                <input 
+                    value = {val} 
+                    id = "task" 
+                    className = "addTask" 
+                    placeholder = "Type in your task here" 
+                    onChange={handleInputChange}
+                    onKeyDown={e => handleEnter(e, 1)}
+                    autoComplete="off"
+                />
+                <button className='submit-feedback' type="submit" onClick={addTask}>Add Task!</button>
+                {noTask && <p>You need to type something!</p>}
             </div>
-            
         </div>
       </div>
     
