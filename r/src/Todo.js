@@ -17,18 +17,18 @@ export default function Todo() {
     const [bib, setBib] = useState("");
     const [noTask, setnoTask] = useState(false);
     
-    // useEffect(() => {
-    //     chrome.storage.sync.get("list", function(items){
-    //         let new_list = [];
-    //         let index = 0;
-    //         for (const e in items["list"]) {
-    //             new_list.push({"id": index, "task": items["list"][e].task});
-    //             index++;
-    //         }
-    //         setList(new_list);
-    //         setIndex(new_list.length + 1);
-    //     }
-    // )}, [])
+    useEffect(() => {
+        chrome.storage.sync.get("list", function(items){
+            let new_list = [];
+            let index = 0;
+            for (const e in items["list"]) {
+                new_list.push({"id": index, "task": items["list"][e].task});
+                index++;
+            }
+            setList(new_list);
+            setIndex(new_list.length + 1);
+        }
+    )}, [])
     useEffect(() => {
         document.getElementById("task").focus();
         chooseBibleVerse();
@@ -49,7 +49,7 @@ export default function Todo() {
         setVal("");
         document.getElementById("task").focus();
         setnoTask(false);
-        // chrome.storage.sync.set({"list": new_list});
+        chrome.storage.sync.set({"list": new_list});
     }
 
     function handleListItemClick(e, x) {
@@ -58,7 +58,7 @@ export default function Todo() {
         let new_list = list.slice();
         new_list[i] = {'id': i, 'task': e.target.value};
         setList(new_list);
-        // chrome.storage.sync.set({"list": new_list});
+        chrome.storage.sync.set({"list": new_list});
     }
 
     function handleInputChange({target}) {
@@ -72,7 +72,7 @@ export default function Todo() {
         const right = list.slice(i+1, list.length);
         const new_list = left.concat(right);
         setList(new_list);
-        // chrome.storage.sync.set({"list": new_list});
+        chrome.storage.sync.set({"list": new_list});
     }
 
     function chooseBibleVerse() {
