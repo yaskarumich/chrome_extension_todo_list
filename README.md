@@ -10,6 +10,6 @@ Directions:
 2. navigate to chrome_extension_todo_list/r
 3. run the comamnd "npm run move"
 4. go to "chrome://extensions"
-5. Click on "Load unpacked"
-6. Choose "chrome_extensioN_todo_list". 
-7. Check out your new todo list!
+6. Click on "Load unpacked"
+7. Choose the new folder "chrome_extension_todo_list". Note, don't choose '../r'. 
+8. Check out your new todo list!
