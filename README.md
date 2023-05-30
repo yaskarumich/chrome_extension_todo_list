@@ -8,7 +8,7 @@ Follows this article: https://javascript.plainenglish.io/creating-a-chrome-exten
 Directions: 
 1. clone the repo 
 2. navigate to chrome_extension_todo_list/r
-3. run the comamnd "npm run move"
+3. run the command "npm run move"
 4. go to "chrome://extensions"
 6. Click on "Load unpacked"
 7. Choose the new folder "chrome_extension_todo_list". Note, don't choose '../r'. 
